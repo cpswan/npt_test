@@ -19,7 +19,7 @@ jobs:
           nohup npt -f stepcaprod -t cookingthelemon -r rv_am -d stepcaprod \
             -l 3443 -p 3443 --rh 127.0.0.1 --lh 127.0.0.1 -T 0 \
             > npt.log 2> npt.err < /dev/null &
-          tail -f npt.log | grep -m 1 "npt is listening"
+          tail -f npt.err | grep -m 1 "npt is listening"
 
       # Ensure runner trusts our CA
       - name: Add Custom CA to Runner Trust Store
