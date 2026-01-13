@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup NoPorts and Authentication
-        uses: atsign-foundation/noports-action@v0.0.1
+        uses: atsign-foundation/noports-action@v0.0.2
         with:
           atsign: '@stepcaprod'
           atkeys-secret: ${{ secrets.ATKEYS_STEPCAPROD }}
