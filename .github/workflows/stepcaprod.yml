@@ -1,7 +1,7 @@
 name: NoPorts Example
 
 on:
-  workflow-dispatch:
+  workflow_dispatch:
 
 jobs:
   noports-job:
