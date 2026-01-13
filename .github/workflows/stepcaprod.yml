@@ -1,0 +1,29 @@
+name: NoPorts Example
+
+on:
+  workflow-dispatch:
+
+jobs:
+  noports-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup NoPorts and Authentication
+        uses: atsign-foundation/noports-action@v0.0.1
+        with:
+          atsign: '@stepcaprod'
+          atkeys-secret: ${{ secrets.ATKEYS_STEPCAPROD }}
+
+      - name: Establish a NoPorts tunnel
+        run: |
+          # The action placed the keys in the default ~/.atsign/keys/ location
+          npt -f stepcaprod -t cookingthelemon -h rv_am -d stepcaprod -l 3443 -p 3443 --rh 127.0.0.1 --lh 127.0.0.1 -T 0
+
+      # Ensure runner trusts our CA
+      - name: Add Custom CA to Runner Trust Store
+        run: |
+          echo "${{ vars.PRODCA }}" | sudo tee /usr/local/share/ca-certificates/stepcaprod.crt > /dev/null
+          sudo update-ca-certificates
+
+      - name: Test connection to CA
+        run: |
+          curl https://ca.atsign.org:3443/acme/acme/directory
