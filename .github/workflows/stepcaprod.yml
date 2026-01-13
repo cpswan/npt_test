@@ -16,7 +16,7 @@ jobs:
       - name: Establish a NoPorts tunnel
         run: |
           # The action placed the keys in the default ~/.atsign/keys/ location
-          npt -f stepcaprod -t cookingthelemon -h rv_am -d stepcaprod -l 3443 -p 3443 --rh 127.0.0.1 --lh 127.0.0.1 -T 0
+          npt -f stepcaprod -t cookingthelemon -r rv_am -d stepcaprod -l 3443 -p 3443 --rh 127.0.0.1 --lh 127.0.0.1 -T 0
 
       # Ensure runner trusts our CA
       - name: Add Custom CA to Runner Trust Store
